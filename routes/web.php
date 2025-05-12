@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/legacy-preview', fn () => Inertia::render('legacy-preview'))->name('legacy.preview');
+
+
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
