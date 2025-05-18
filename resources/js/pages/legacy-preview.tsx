@@ -26,7 +26,6 @@ interface Job {
 }
 
 const jobs: Job[] = [
-    // Для JobCard (9 вакансий, каждая с 3 тегами)
     {
         id: 1,
         employer: { name: 'Tech Corp', logo: 'logos/tech-corp.png' },
@@ -135,46 +134,8 @@ const jobs: Job[] = [
             { id: 24, name: 'Network Security' },
         ],
     },
-    // Для JobCardWide (3 вакансии, каждая с 3 тегами)
-    {
-        id: 10,
-        employer: { name: 'Health Tech', logo: 'logos/health-tech.png' },
-        title: 'Mobile Developer',
-        salary: '$100,000 - $130,000',
-        url: 'https://example.com/jobs/10',
-        tags: [
-            { id: 25, name: 'React Native' },
-            { id: 26, name: 'Swift' },
-            { id: 27, name: 'Kotlin' },
-        ],
-    },
-    {
-        id: 11,
-        employer: { name: 'Edu Platform', logo: 'logos/edu-platform.png' },
-        title: 'Full Stack Developer',
-        salary: '$110,000 - $140,000',
-        url: 'https://example.com/jobs/11',
-        tags: [
-            { id: 1, name: 'React' },
-            { id: 4, name: 'Node.js' },
-            { id: 28, name: 'PostgreSQL' },
-        ],
-    },
-    {
-        id: 12,
-        employer: { name: 'Green Energy', logo: 'logos/green-energy.png' },
-        title: 'Embedded Systems Engineer',
-        salary: '$115,000 - $145,000',
-        url: 'https://example.com/jobs/12',
-        tags: [
-            { id: 29, name: 'C++' },
-            { id: 30, name: 'RTOS' },
-            { id: 31, name: 'IoT' },
-        ],
-    },
 ];
 
-// Извлечение уникальных тегов
 const uniqueTags: TagType[] = Array.from(
     new Map(
         jobs
@@ -206,7 +167,7 @@ const LegacyPreview: React.FC = () => {
             </div>
 
             <div className="space-y-6 mt-8">
-                {jobs.slice(9, 12).map((job) => (
+                {jobs.slice(0, 9).map((job) => (
                     <JobCardWide key={job.id} job={job} />
                 ))}
             </div>
