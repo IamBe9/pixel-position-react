@@ -7,13 +7,13 @@ export default function LegacyLayout({ children }: PropsWithChildren) {
             <div className="px-10">
                 <nav className="flex justify-between items-center py-4 border-b border-white/10">
                     <div>
-                        <Link href="/">
+                        <Link href="/public">
                             <img src="/images/logo.svg" alt="Logo" />
                         </Link>
                     </div>
 
                     <div className="space-x-6 font-bold">
-                        <Link href="/">Jobs</Link>
+                        <Link href="/public">Jobs</Link>
                         <Link href="#">Careers</Link>
                         <Link href="#">Salaries</Link>
                         <Link href="#">Companies</Link>

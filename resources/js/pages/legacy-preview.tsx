@@ -1,72 +1,217 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
-import LegacyLayout from '@/layouts/legacy-layout';
+import LegacyLayout from '../components/legacy-layout';
+import PageHeading from '../components/PageHeading';
+import JobCard from '../components/JobCard';
+import JobCardWide from '../components/JobCardWide';
+import SectionHeading from '../components/SectionHeading';
+import Tag from '../components/Tag';
 
-const jobs = [
+interface Employer {
+    name: string;
+    logo: string;
+}
+
+interface TagType {
+    id: number;
+    name: string;
+}
+
+interface Job {
+    id: number;
+    employer: Employer;
+    title: string;
+    salary: string;
+    url: string;
+    tags: TagType[];
+}
+
+const jobs: Job[] = [
+    // Для JobCard (9 вакансий, каждая с 3 тегами)
     {
-        title: "Software Engineer",
-        salary: "$120,000",
-        employer: { name: "Tech Corp", logo: "/images/tech-corp-logo.svg" },
-        url: "#",
-        tags: ["React", "JavaScript", "Full-time"]
+        id: 1,
+        employer: { name: 'Tech Corp', logo: 'logos/tech-corp.png' },
+        title: 'Senior React Developer',
+        salary: '$120,000 - $150,000',
+        url: 'https://example.com/jobs/1',
+        tags: [
+            { id: 1, name: 'React' },
+            { id: 2, name: 'TypeScript' },
+            { id: 3, name: 'Tailwind' },
+        ],
     },
     {
-        title: "Product Manager",
-        salary: "$95,000",
-        employer: { name: "Innovate Inc.", logo: "/images/innovate-logo.svg" },
-        url: "#",
-        tags: ["Agile", "Leadership", "Full-time"]
+        id: 2,
+        employer: { name: 'Innovate Inc', logo: 'logos/innovate-inc.png' },
+        title: 'Backend Engineer',
+        salary: '$100,000 - $130,000',
+        url: 'https://example.com/jobs/2',
+        tags: [
+            { id: 4, name: 'Node.js' },
+            { id: 5, name: 'Express' },
+            { id: 6, name: 'MongoDB' },
+        ],
     },
     {
-        title: "Data Scientist",
-        salary: "$110,000",
-        employer: { name: "DataWorks", logo: "/images/data-works-logo.svg" },
-        url: "#",
-        tags: ["Python", "Machine Learning", "Full-time"]
-    }
+        id: 3,
+        employer: { name: 'Data Solutions', logo: 'logos/data-solutions.png' },
+        title: 'Data Scientist',
+        salary: '$110,000 - $140,000',
+        url: 'https://example.com/jobs/3',
+        tags: [
+            { id: 7, name: 'Python' },
+            { id: 8, name: 'Machine Learning' },
+            { id: 9, name: 'Pandas' },
+        ],
+    },
+    {
+        id: 4,
+        employer: { name: 'Cloud Systems', logo: 'logos/cloud-systems.png' },
+        title: 'DevOps Engineer',
+        salary: '$115,000 - $145,000',
+        url: 'https://example.com/jobs/4',
+        tags: [
+            { id: 10, name: 'AWS' },
+            { id: 11, name: 'Docker' },
+            { id: 12, name: 'Kubernetes' },
+        ],
+    },
+    {
+        id: 5,
+        employer: { name: 'Web Innovators', logo: 'logos/web-innovators.png' },
+        title: 'Frontend Developer',
+        salary: '$90,000 - $120,000',
+        url: 'https://example.com/jobs/5',
+        tags: [
+            { id: 1, name: 'React' },
+            { id: 13, name: 'Vue' },
+            { id: 3, name: 'Tailwind' },
+        ],
+    },
+    {
+        id: 6,
+        employer: { name: 'AI Labs', logo: 'logos/ai-labs.png' },
+        title: 'AI Research Engineer',
+        salary: '$130,000 - $160,000',
+        url: 'https://example.com/jobs/6',
+        tags: [
+            { id: 7, name: 'Python' },
+            { id: 14, name: 'TensorFlow' },
+            { id: 15, name: 'PyTorch' },
+        ],
+    },
+    {
+        id: 7,
+        employer: { name: 'Game Studio', logo: 'logos/game-studio.png' },
+        title: 'Game Developer',
+        salary: '$95,000 - $125,000',
+        url: 'https://example.com/jobs/7',
+        tags: [
+            { id: 16, name: 'Unity' },
+            { id: 17, name: 'C#' },
+            { id: 18, name: 'Unreal Engine' },
+        ],
+    },
+    {
+        id: 8,
+        employer: { name: 'FinTech Solutions', logo: 'logos/fintech-solutions.png' },
+        title: 'Blockchain Developer',
+        salary: '$125,000 - $155,000',
+        url: 'https://example.com/jobs/8',
+        tags: [
+            { id: 19, name: 'Solidity' },
+            { id: 20, name: 'Ethereum' },
+            { id: 21, name: 'Web3' },
+        ],
+    },
+    {
+        id: 9,
+        employer: { name: 'Cyber Security', logo: 'logos/cyber-security.png' },
+        title: 'Security Engineer',
+        salary: '$105,000 - $135,000',
+        url: 'https://example.com/jobs/9',
+        tags: [
+            { id: 22, name: 'Cybersecurity' },
+            { id: 23, name: 'Penetration Testing' },
+            { id: 24, name: 'Network Security' },
+        ],
+    },
+    // Для JobCardWide (3 вакансии, каждая с 3 тегами)
+    {
+        id: 10,
+        employer: { name: 'Health Tech', logo: 'logos/health-tech.png' },
+        title: 'Mobile Developer',
+        salary: '$100,000 - $130,000',
+        url: 'https://example.com/jobs/10',
+        tags: [
+            { id: 25, name: 'React Native' },
+            { id: 26, name: 'Swift' },
+            { id: 27, name: 'Kotlin' },
+        ],
+    },
+    {
+        id: 11,
+        employer: { name: 'Edu Platform', logo: 'logos/edu-platform.png' },
+        title: 'Full Stack Developer',
+        salary: '$110,000 - $140,000',
+        url: 'https://example.com/jobs/11',
+        tags: [
+            { id: 1, name: 'React' },
+            { id: 4, name: 'Node.js' },
+            { id: 28, name: 'PostgreSQL' },
+        ],
+    },
+    {
+        id: 12,
+        employer: { name: 'Green Energy', logo: 'logos/green-energy.png' },
+        title: 'Embedded Systems Engineer',
+        salary: '$115,000 - $145,000',
+        url: 'https://example.com/jobs/12',
+        tags: [
+            { id: 29, name: 'C++' },
+            { id: 30, name: 'RTOS' },
+            { id: 31, name: 'IoT' },
+        ],
+    },
 ];
 
-export default function LegacyPreview() {
+// Извлечение уникальных тегов
+const uniqueTags: TagType[] = Array.from(
+    new Map(
+        jobs
+            .flatMap((job) => job.tags)
+            .map((tag) => [tag.id, tag])
+    ).values()
+);
+
+const LegacyPreview: React.FC = () => {
     return (
         <LegacyLayout>
-            <Head title="Legacy Preview" />
-            <h1 className="font-bold text-center text-4xl mb-8">Job Listings</h1>
+            <PageHeading>Results</PageHeading>
 
-            <div className="space-y-6">
-                {jobs.map((job, index) => (
-                    <div key={index} className="p-4 bg-white/5 rounded-xl border border-transparent hover:border-blue-800 group transition-colors duration-300">
-                        <div className="flex gap-x-6">
-                            <div>
-                                <img src={job.employer.logo} alt={job.employer.name} className="rounded-xl" width={90} />
-                            </div>
-
-                            <div className="flex-1 flex flex-col">
-                                <a href="#" className="self-start text-sm text-gray-400 transition-colors duration-300">{job.employer.name}</a>
-
-                                <h3 className="font-bold text-xl mt-3 group-hover:text-blue-800">
-                                    <a href={job.url} target="_blank">
-                                        {job.title}
-                                    </a>
-                                </h3>
-
-                                <p className="text-sm text-gray-400 mt-auto">{job.salary}</p>
-                            </div>
-
-                            <div>
-                                {job.tags.map((tag, tagIndex) => (
-                                    <a
-                                        key={tagIndex}
-                                        href={`/tags/${tag.toLowerCase()}`}
-                                        className="bg-white/10 hover:bg-white/25 rounded-xl font-bold transition-colors duration-300 px-5 py-1 text-sm"
-                                    >
-                                        {tag}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
+            <div className="flex flex-wrap gap-4">
+                {jobs.slice(0, 9).map((job) => (
+                    <div key={job.id} className="w-[calc(33.333%-1rem)]">
+                        <JobCard job={job} />
                     </div>
+                ))}
+            </div>
+
+            <div className="mt-8">
+                <SectionHeading>Тег</SectionHeading>
+                <div className="flex flex-wrap gap-2 mt-4">
+                    {uniqueTags.map((tag) => (
+                        <Tag key={tag.id} tag={tag} size="base" />
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-6 mt-8">
+                {jobs.slice(9, 12).map((job) => (
+                    <JobCardWide key={job.id} job={job} />
                 ))}
             </div>
         </LegacyLayout>
     );
-}
+};
+
+export default LegacyPreview;
